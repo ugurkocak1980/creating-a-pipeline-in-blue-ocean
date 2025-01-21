@@ -6,14 +6,14 @@ pipeline {
     }
 
   }
-  stage('Setup') {
+  stages {
+      stage('Setup') {
       steps {
         // Fix npm cache directory permissions
         sh 'npm config set cache /home/ubuntu/.npm'
         sh 'mkdir -p /home/ubuntu/.npm && chown -R $(whoami) /home/ubuntu/.npm'
       }
     }
-  stages {
     stage('Build') {
       steps {
         sh 'npm install'
